@@ -2,6 +2,11 @@
 
 This library helps you get data and call functions on the server from the client.
 
+NuGet:  
+[FiveMRemoteCall.Client](https://www.nuget.org/packages/FiveMRemoteCall.Client/)  
+[FiveMRemoteCall.Server](https://www.nuget.org/packages/FiveMRemoteCall.Server/)  
+[FiveMRemoteCall.Shared](https://www.nuget.org/packages/FiveMRemoteCall.Shared/)
+
 ## Usage
 
 This package assumes the following style of solution for your resource:
@@ -195,10 +200,4 @@ Got remote call callback - 2d08337b-ebd6-4545-b374-5156c6d6f9d9
 
 // Server
 Remove event call recieved from René - 2d08337b-ebd6-4545-b374-5156c6d6f9d9 - AddNumbers
-```
-
-## NuGet feed
-
-```
-https://nuget.pkg.github.com/Rene-Sackers/index.json
 ```
