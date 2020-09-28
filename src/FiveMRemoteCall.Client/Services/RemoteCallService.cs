@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CitizenFX.Core;
+using FiveMRemoteCall.Client.Helpers;
 using FiveMRemoteCall.Client.Models;
 using FiveMRemoteCall.Shared;
 
@@ -30,10 +31,9 @@ namespace FiveMRemoteCall.Client.Services
 		{
 			var guidId = Guid.Parse(id);
 			if (!_getDataCompletionSources.TryRemove(guidId, out var callback))
-			{
-				Debug.WriteLine("Failed to get completion source for get data event: " + id);
 				return;
-			}
+
+			LogHelper.Log($"Got remote call callback - {id}");
 
 			var parameterKeyValues = parameter?.ToList();
 			var targetType = (Type) callback.TargetType;
@@ -79,13 +79,10 @@ namespace FiveMRemoteCall.Client.Services
 			var id = Guid.NewGuid();
 			var callback = new GetDataCallback<TReturn>();
 
-			Debug.WriteLine($"Remote call {declaringType.FullName}.{methodName}");
+			Debug.WriteLine($"Executing remote call {declaringType.FullName}.{methodName} - {id}");
 
 			if (!_getDataCompletionSources.TryAdd(id, callback))
-			{
-				Debug.WriteLine("Failed to add completion source for get data event");
 				return Task.FromResult<TReturn>(default);
-			}
 
 			BaseScript.TriggerServerEvent(Constants.CallRemoteEvent, id.ToString(), remoteAqn, methodName, parameterValue);
 

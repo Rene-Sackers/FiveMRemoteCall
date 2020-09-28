@@ -16,6 +16,18 @@ This package assumes the following style of solution for your resource:
 		- IExampleRemote.cs
 
 We're going to create a chat command that adds 2 numbers using the server (you know, to save the immense calculation load on the clients)  
+
+First, add references to the NuGet packages:
+- MyProject (sln)
+	- MyProject.Client
+		- FiveMRemoteCall.Client
+		- FiveMRemoteCall.Shared
+	- MyProject.Server
+		- FiveMRemoteCall.Server
+		- FiveMRemoteCall.Shared
+	- MyProject.Shared
+		- FiveMRemoteCall.Shared
+
 Create an interface implementing `IRemote` in your shared project, along with required request/response classes.
 
 ```csharp
@@ -175,6 +187,15 @@ FiveMRemoteCall.Server.Helpers.LogHelper.LogAction = Debug.WriteLine;
 ```
 
 This will write any logs from the FiveMRemoteCall package to `Debug.WriteLine`.
+
+```
+// Client
+Executing remote call FiveMRemoteExample.Shared.Models.Remote.IExampleRemote.AddNumbers - 2d08337b-ebd6-4545-b374-5156c6d6f9d9
+Got remote call callback - 2d08337b-ebd6-4545-b374-5156c6d6f9d9
+
+// Server
+Remove event call recieved from René - 2d08337b-ebd6-4545-b374-5156c6d6f9d9 - AddNumbers
+```
 
 ## NuGet feed
 

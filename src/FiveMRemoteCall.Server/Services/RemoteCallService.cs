@@ -29,12 +29,16 @@ namespace FiveMRemoteCall.Server.Services
 
 		public void Start()
 		{
-			LogHelper.Log("adding event handler");
+			LogHelper.Log("Starting remote call service");
 
 			foreach (var remote in _remotes)
 			{
-				_remotesByAqn.Add(remote.ResolveAsType.AssemblyQualifiedName, new RemoteInfo(remote));
-				LogHelper.Log($"Added remote {remote.ResolveAsType.Name}");
+				var remoteInfo = new RemoteInfo(remote);
+				_remotesByAqn.Add(remote.ResolveAsType.AssemblyQualifiedName, remoteInfo);
+
+				remoteInfo.MethodsByName.Values
+					.ToList()
+					.ForEach(v => LogHelper.Log($"Added remote method {remote.ResolveAsType.FullName}.{v}"));
 			}
 
 			_eventHandlerDictionary[Constants.CallRemoteEvent] += new Action<Player, string, string, string, ExpandoObject>(CallMethodCallbackHandler);
@@ -42,7 +46,7 @@ namespace FiveMRemoteCall.Server.Services
 
 		public async void CallMethodCallbackHandler([FromSource] Player source, string id, string instanceAqn, string method, ExpandoObject parameter)
 		{
-			LogHelper.Log($"Event call recieved from {source.Name} - {id}");
+			LogHelper.Log($"Remove event call recieved from {source.Name} - {id} - {method}");
 
 			var returnValue = await CallLocalMethod(instanceAqn, method, parameter);
 
@@ -53,13 +57,13 @@ namespace FiveMRemoteCall.Server.Services
 		{
 			if (!_remotesByAqn.TryGetValue(instanceAqn, out var remoteInfo))
 			{
-				LogHelper.Log("Could not resolve remote with aqn " + instanceAqn);
+				LogHelper.Log($"Could not resolve remote with assembly qualified name {instanceAqn}");
 				return null;
 			}
 
 			if (!remoteInfo.MethodsByName.TryGetValue(method, out var targetMethod))
 			{
-				LogHelper.Log($"Could not resolve target method {method}");
+				LogHelper.Log($"Could not resolve target method {instanceAqn}.{method}");
 				return null;
 			}
 
@@ -74,13 +78,16 @@ namespace FiveMRemoteCall.Server.Services
 
 			if (TaskType.IsAssignableFrom(targetMethod.ReturnType))
 			{
+				// Task with return type
 				if (targetMethod.ReturnType.IsGenericType)
 					return await (dynamic)result;
 
+				// Task with no return type
 				await (dynamic)result;
 				return null;
 			}
 
+			// Synchronous method
 			return result;
 		}
 	}
