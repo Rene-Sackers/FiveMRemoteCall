@@ -1,3 +1,5 @@
-$package = Get-ChildItem ".\packed\*.nupkg" | Sort-Object LastWriteTime | Select-Object -Last 1
+$packages = Get-ChildItem ".\packed\*.nupkg"
 
-Invoke-Expression "& .\nuget.exe push ""$package"" -src https://nuget.pkg.github.com/Rene-Sackers/index.json"
+foreach ($package in $packages) {
+	Invoke-Expression "& .\nuget.exe push ""$package"" -src https://nuget.pkg.github.com/Rene-Sackers/index.json"
+}
