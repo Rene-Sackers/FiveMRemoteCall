@@ -1,0 +1,13 @@
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<authors>René Sackers</authors>
+		<repository type="git" url="https://github.com/Rene-Sackers/FiveMRemoteCall.git" />
+		<projectUrl>https://github.com/Rene-Sackers/FiveMRemoteCall</projectUrl>
+		<description>A remote call framework for FiveM</description>
+		<dependencies>
+			<dependency id="FiveMRemoteCall.Shared" version="$version$" />
+		</dependencies>
+	</metadata>
+</package>
