@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FiveMRemoteCall")]
+[assembly: AssemblyTitle("FiveMRemoteCall.Sample.Server")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FiveMRemoteCall")]
+[assembly: AssemblyProduct("FiveMRemoteCall.Sample.Server")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("deffefee-3a91-487f-9bc1-3feed9b8a308")]
+[assembly: Guid("5023334a-bc7b-475b-aa27-d02aecfe67ae")]
 
 // Version information for an assembly consists of the following four values:
 //

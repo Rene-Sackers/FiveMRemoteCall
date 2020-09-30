@@ -24,7 +24,7 @@ namespace FiveMRemoteCall.Client.Services
 
 		public void Start()
 		{
-			_eventHandlerDictionary[Constants.CallRemoteEvent] += new Action<string, ExpandoObject>(GetDataCallback);
+			_eventHandlerDictionary[Constants.CallServerEvent] += new Action<string, ExpandoObject>(GetDataCallback);
 		}
 
 		private void GetDataCallback(string id, ExpandoObject parameter)
@@ -84,7 +84,7 @@ namespace FiveMRemoteCall.Client.Services
 			if (!_getDataCompletionSources.TryAdd(id, callback))
 				return Task.FromResult<TReturn>(default);
 
-			BaseScript.TriggerServerEvent(Constants.CallRemoteEvent, id.ToString(), remoteAqn, methodName, parameterValue);
+			BaseScript.TriggerServerEvent(Constants.CallServerEvent, id.ToString(), remoteAqn, methodName, parameterValue);
 
 			return callback.CompletionSource.Task;
 		}

@@ -41,7 +41,7 @@ namespace FiveMRemoteCall.Server.Services
 					.ForEach(v => LogHelper.Log($"Added remote method {remote.ResolveAsType.FullName}.{v}"));
 			}
 
-			_eventHandlerDictionary[Constants.CallRemoteEvent] += new Action<Player, string, string, string, ExpandoObject>(CallMethodCallbackHandler);
+			_eventHandlerDictionary[Constants.CallServerEvent] += new Action<Player, string, string, string, ExpandoObject>(CallMethodCallbackHandler);
 		}
 
 		public async void CallMethodCallbackHandler([FromSource] Player source, string id, string instanceAqn, string method, ExpandoObject parameter)
@@ -50,7 +50,7 @@ namespace FiveMRemoteCall.Server.Services
 
 			var returnValue = await CallLocalMethod(instanceAqn, method, parameter);
 
-			source.TriggerEvent(Constants.CallRemoteEvent, id, returnValue);
+			source.TriggerEvent(Constants.CallServerEvent, id, returnValue);
 		}
 
 		private async Task<object> CallLocalMethod(string instanceAqn, string method, ExpandoObject parameter)
