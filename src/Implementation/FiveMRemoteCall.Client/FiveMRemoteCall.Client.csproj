@@ -47,8 +47,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\GetDataCallback.cs" />
+    <Compile Include="Extensions\ExpandoObjectExtensions.cs" />
+    <Compile Include="Models\RemoteCallCallbackInfo.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Models\RemoteInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\RemoteCallService.cs" />
   </ItemGroup>
