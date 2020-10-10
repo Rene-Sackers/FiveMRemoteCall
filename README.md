@@ -9,6 +9,8 @@ NuGet:
 
 ## Usage
 
+**PLEASE NOTE: Several things have changed since I wrote this readme. If you actually intend on using this library and the example below no longer works, create an issue and I'll update it.**
+
 This package assumes the following style of solution for your resource:
 
 - MyProject (sln)
