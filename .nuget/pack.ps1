@@ -3,9 +3,9 @@ $nugetExePath = ".\nuget.exe"
 $packedPath = ".\packed\"
 
 $projects =
-    "../src/FiveMRemoteCall.Client/FiveMRemoteCall.Client.csproj",
-    "../src/FiveMRemoteCall.Server/FiveMRemoteCall.Server.csproj",
-    "../src/FiveMRemoteCall.Shared/FiveMRemoteCall.Shared.csproj"
+    "../src/Implementation/FiveMRemoteCall.Client/FiveMRemoteCall.Client.csproj",
+    "../src/Implementation/FiveMRemoteCall.Server/FiveMRemoteCall.Server.csproj",
+    "../src/Implementation/FiveMRemoteCall.Shared/FiveMRemoteCall.Shared.csproj"
 
 if (Test-Path $packedPath)
 {

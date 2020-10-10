@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FiveMRemoteCall.Shared;
 
-namespace FiveMRemoteCall.Server.Models
+namespace FiveMRemoteCall.Shared.Models
 {
-	internal class RemoteInfo
+	public class RemoteInfo
 	{
 		public IRemote Instance { get; }
 
@@ -17,6 +16,7 @@ namespace FiveMRemoteCall.Server.Models
 			MethodsByName = Instance
 				.GetType()
 				.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+				.Where(mi => !mi.IsSpecialName)
 				.ToDictionary(m => m.Name, m => m);
 		}
 	}

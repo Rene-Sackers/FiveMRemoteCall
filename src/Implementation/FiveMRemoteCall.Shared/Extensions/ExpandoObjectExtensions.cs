@@ -2,7 +2,7 @@
 using System.Dynamic;
 using System.Linq;
 
-namespace FiveMRemoteCall.Client.Extensions
+namespace FiveMRemoteCall.Shared.Extensions
 {
 	internal static class ExpandoObjectExtensions
 	{

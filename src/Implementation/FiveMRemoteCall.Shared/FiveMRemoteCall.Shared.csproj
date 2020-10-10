@@ -31,13 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
-    <Compile Include="IRemote.cs" />
+    <Compile Include="Models\Constants.cs" />
+    <Compile Include="Extensions\ExpandoObjectExtensions.cs" />
+    <Compile Include="Models\IRemote.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Models\RemoteCallCallbackInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\RemoteCallServiceBase.cs" />
+    <Compile Include="Models\RemoteInfo.cs" />
+    <Compile Include="Helpers\TypeResolveHelper.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

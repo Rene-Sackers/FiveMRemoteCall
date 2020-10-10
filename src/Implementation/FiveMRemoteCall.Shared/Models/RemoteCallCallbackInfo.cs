@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace FiveMRemoteCall.Client.Models
+namespace FiveMRemoteCall.Shared.Models
 {
 	internal class RemoteCallCallbackInfo<T> 
 	{

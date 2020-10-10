@@ -2,8 +2,8 @@
 using CitizenFX.Core;
 using FiveMRemoteCall.Sample.Server.Remotes;
 using FiveMRemoteCall.Sample.Shared.Remotes;
-using FiveMRemoteCall.Server.Helpers;
 using FiveMRemoteCall.Server.Services;
+using FiveMRemoteCall.Shared.Helpers;
 
 namespace FiveMRemoteCall.Sample.Server
 {
@@ -31,9 +31,11 @@ namespace FiveMRemoteCall.Sample.Server
 
 			foreach (var player in Players)
 			{
-				var clientTime = await _remoteCallService.CallRemoteMethod<IExampleClientRemote, Time>(player, r => r.GetClientTime());
+				//var clientTime = await _remoteCallService.CallRemoteMethod<IExampleClientRemote, Time>(player, r => r.GetClientTime());
 
-				Debug.WriteLine($"Player {player.Name} time: {clientTime.Hours:D2}:{clientTime.Minutes:D2}:{clientTime.Seconds:D2}");
+				//Debug.WriteLine($"Player {player.Name} time: {clientTime.Hours:D2}:{clientTime.Minutes:D2}:{clientTime.Seconds:D2}");
+
+				//await _remoteCallService.CallRemoteMethod<IExampleClientRemote>(player, r => r.StringParameter("test param"));
 			}
 		}
 	}

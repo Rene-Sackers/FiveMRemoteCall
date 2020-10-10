@@ -1,4 +1,4 @@
-﻿namespace FiveMRemoteCall.Shared
+﻿namespace FiveMRemoteCall.Shared.Models
 {
 	internal static class Constants
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FiveMRemoteCall.Server.Helpers
+namespace FiveMRemoteCall.Shared.Helpers
 {
 	public static class LogHelper
 	{
@@ -8,7 +8,7 @@ namespace FiveMRemoteCall.Server.Helpers
 
 		internal static void Log(string message)
 		{
-			LogAction?.Invoke(message);
+			LogAction?.Invoke($"[{DateTime.Now:T}.{DateTime.Now.TimeOfDay.Milliseconds:D3}] {message}");
 		}
 	}
 }

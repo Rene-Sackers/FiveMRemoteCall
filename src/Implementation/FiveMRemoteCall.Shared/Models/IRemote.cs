@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FiveMRemoteCall.Shared
+namespace FiveMRemoteCall.Shared.Models
 {
 	public interface IRemote
 	{
