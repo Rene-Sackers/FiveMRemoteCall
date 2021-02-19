@@ -23,17 +23,19 @@ namespace FiveMRemoteCall.Client.Services
 
 		protected override void HookEvents(Action<string, object> remoteCallbackHandler)
 		{
-			_eventHandlerDictionary[Constants.CallClientEvent] += new Action<string, string, string, List<object>>(CallMethodHandler);
-			_eventHandlerDictionary[Constants.CallServerEvent] += remoteCallbackHandler;
+			LogHelper.Log($"Listen to calls on event {EventPrefix + Constants.CallClientEvent}");
+
+			_eventHandlerDictionary[EventPrefix + Constants.CallClientEvent] += new Action<string, string, string, List<object>>(CallMethodHandler);
+			_eventHandlerDictionary[EventPrefix + Constants.CallServerEvent] += remoteCallbackHandler;
 		}
 		
-		public async void CallMethodHandler(string id, string instanceAqn, string method, List<object> parameters)
+		private async void CallMethodHandler(string id, string instanceAqn, string method, List<object> parameters)
 		{
-			LogHelper.Log($"Remove event call recieved - {id} - {method}");
+			LogHelper.Log($"Remote event call recieved - {id} - {method}");
 
 			var returnValue = await CallLocalMethod(instanceAqn, method, parameters);
 
-			BaseScript.TriggerServerEvent(Constants.CallClientEvent, id, returnValue);
+			BaseScript.TriggerServerEvent(EventPrefix + Constants.CallClientEvent, id, returnValue);
 		}
 
 		public Task CallRemoteMethod<TRemote>(Expression<Action<TRemote>> expression) where TRemote : IRemote
@@ -67,7 +69,7 @@ namespace FiveMRemoteCall.Client.Services
 			if (!RemoteCallCompletionSources.TryAdd(id, callback))
 				return default;
 
-			BaseScript.TriggerServerEvent(Constants.CallServerEvent, id.ToString(), remoteAqn, methodName, arguments);
+			BaseScript.TriggerServerEvent(EventPrefix + Constants.CallServerEvent, id.ToString(), remoteAqn, methodName, arguments);
 
 			var timeout = BaseScript.Delay(RemoteCallCallbackTimeout);
 			var completedTask = await Task.WhenAny(timeout, callback.CompletionSource.Task);

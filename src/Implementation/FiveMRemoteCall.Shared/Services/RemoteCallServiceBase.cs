@@ -10,6 +10,8 @@ namespace FiveMRemoteCall.Shared.Services
 {
 	public abstract class RemoteCallServiceBase
 	{
+		public static string EventPrefix;
+
 		protected static readonly Type TaskType = typeof(Task);
 
 		protected readonly IEnumerable<IRemote> Remotes;
